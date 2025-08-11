@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 data-aos="fade-up">Set Monthly Budget</h3>
+<div class="card p-3 card-elevated" data-aos="fade-up" data-aos-delay="80">
+  <form method="POST" id="setBudgetForm">
+    <div class="mb-3">
+      <label class="form-label">Amount</label>
+      <input name="amount" type="number" step="0.01" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Month (optional)</label>
+      <input name="month" type="text" class="form-control" placeholder="{{ datetime.utcnow().strftime('%B %Y') }}">
+    </div>
+    <button class="btn btn-primary" type="submit">Save Budget</button>
+  </form>
+</div>
+{% endblock %}

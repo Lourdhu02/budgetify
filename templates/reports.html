@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 data-aos="fade-up">Reports</h3>
+<div class="card p-3 card-elevated" data-aos="fade-up" data-aos-delay="80">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <button id="exportCsvBtn" class="btn btn-sm btn-outline-light">Export CSV</button>
+    </div>
+  </div>
+
+  {% if expenses %}
+  <div class="table-responsive">
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Amount</th>
+          <th>Note</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for e in expenses %}
+        <tr>
+          <td>{{ e.category }}</td>
+          <td>${{ '%.2f' % e.amount }}</td>
+          <td>{{ e.note or '' }}</td>
+          <td>{{ e.date.strftime('%Y-%m-%d') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <p class="text-muted">No expense data.</p>
+  {% endif %}
+</div>
+{% endblock %}
